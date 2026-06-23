@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 5% 96%;
+    --foreground: 240 6% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 6% 10%;
+    --border: 240 6% 90%;
+    --border-strong: 240 5% 83%;
+    --input: 240 6% 90%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 240 5% 96%;
+    --accent-foreground: 240 6% 10%;
+    --ring: 243 75% 59%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 4%;
+    --foreground: 0 0% 98%;
+    --card: 240 6% 10%;
+    --card-foreground: 0 0% 98%;
+    --border: 240 4% 16%;
+    --border-strong: 240 5% 26%;
+    --input: 240 4% 16%;
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 48%;
+    --accent: 240 4% 16%;
+    --accent-foreground: 0 0% 98%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html, body, #root {
+    @apply h-full;
+  }
+
+  body {
+    @apply bg-[#F4F4F5] dark:bg-[#09090B] text-foreground font-sans text-sm antialiased;
+    margin: 0;
+  }
+
+  /* Focus visible ring for keyboard navigation */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand rounded-md;
+  }
+
+  /* Reset focus style for mouse users (no visible ring on :focus) */
+  :focus:not(:focus-visible) {
+    @apply outline-none;
+  }
+}
