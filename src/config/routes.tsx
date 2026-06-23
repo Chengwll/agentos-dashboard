@@ -25,8 +25,8 @@ function LazyPage({ children }: { children: React.ReactNode }) {
   );
 }
 
-export const router = createBrowserRouter([
-  {
+export const router = createBrowserRouter(
+  [{
     path: "/",
     element: <AppShell />,
     children: [
@@ -64,5 +64,6 @@ export const router = createBrowserRouter([
         element: <LazyPage><SettingsPage /></LazyPage>,
       },
     ],
-  },
-]);
+  }],
+  { basename: import.meta.env.BASE_URL },
+);
