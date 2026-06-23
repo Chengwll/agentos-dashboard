@@ -1,0 +1,1 @@
+var e=[{value:`7d`,label:`近 7 天`},{value:`30d`,label:`近 30 天`},{value:`90d`,label:`近 90 天`}],t={south:`华南区域`,east:`华东区域`,north:`华北区域`},n={pdf:`📄`,word:`📝`,excel:`📊`,ppt:`📽️`,txt:`📃`,md:`📋`};export{t as n,e as r,n as t};
