@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createHashRouter, Navigate } from "react-router-dom";
 import { AppShell } from "@/components/layout/AppShell";
 
 const DashboardPage = lazy(() => import("@/features/dashboard"));
@@ -25,8 +25,8 @@ function LazyPage({ children }: { children: React.ReactNode }) {
   );
 }
 
-export const router = createBrowserRouter(
-  [{
+export const router = createHashRouter([
+  {
     path: "/",
     element: <AppShell />,
     children: [
@@ -64,6 +64,5 @@ export const router = createBrowserRouter(
         element: <LazyPage><SettingsPage /></LazyPage>,
       },
     ],
-  }],
-  { basename: import.meta.env.BASE_URL },
-);
+  },
+]);

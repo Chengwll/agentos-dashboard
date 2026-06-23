@@ -12,10 +12,8 @@ const queryClient = new QueryClient({
   },
 });
 
-// Setup mocks
-if (import.meta.env.DEV) {
-  import("./mocks/setupMocks").then((m) => m.setupMocks());
-}
+// Setup mocks (dev + production demo)
+import("./mocks/setupMocks").then((m) => m.setupMocks());
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

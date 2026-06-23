@@ -918,6 +918,57 @@ persist(create<State>(...), { name: "xxx-storage" })
 - 列表状态（筛选、搜索、分页）可选存入 URL query params：`/agents?filter=running&search=test`
 - 面包屑从路由路径自动派生
 
+### 静态部署路由选型
+
+| 部署方式 | 路由 | 原因 |
+|----------|------|------|
+| 静态托管（GitHub Pages / OSS / CDN） | `createHashRouter` | `#` 后的内容不发给服务器 |
+| 有服务端（Nginx / Node / Vercel） | `createBrowserRouter` | 服务端可配置 SPA fallback |
+
+---
+
+# P2-12 · Deployment（部署规范）
+
+## 部署检查清单
+
+```bash
+# 1. 平台可达性
+curl -s --connect-timeout 5 https://目标域名 -o /dev/null -w "%{http_code}"
+
+# 2. 构建产物
+npm run build && ls dist/index.html dist/assets/
+
+# 3. 部署后验证（检查 HTTP 状态码，不仅看 body）
+curl -s --connect-timeout 10 https://部署URL -w "\nHTTP: %{http_code}\n"
+```
+
+## Vite 配置
+
+```ts
+// vite.config.ts — 子路径部署必须
+export default defineConfig({
+  base: "/项目名/",
+});
+```
+
+## Mock 数据
+
+```tsx
+// ✅ Demo 用：所有环境加载
+import("./mocks/setupMocks").then((m) => m.setupMocks());
+
+// ❌ 仅开发模式：生产静默失败
+if (import.meta.env.DEV) { ... }
+```
+
+## 部署工具
+
+优先用 `gh-pages` npm 包，避免手写 git 分支操作：
+
+```bash
+npx gh-pages -d dist
+```
+
 ---
 
 ## 快速参考卡片
